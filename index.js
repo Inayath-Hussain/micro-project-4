@@ -11,9 +11,11 @@ function keyToValuesMap(key) {
     switch (key) {
         case ('='):
         case ('Enter'):
-            const result = calc(display.value);
-            console.log(result);
-            display.value = result
+            if (display.value && isNaN(display.value)) {
+                const result = calc(display.value);
+                console.log(result);
+                display.value = result
+            }
             break;
 
         case ('DEL'):
@@ -46,6 +48,8 @@ btnContainer.addEventListener('click', (e) => {
 
 // keyboard binding
 document.addEventListener('keydown', (e) => {
+    console.log(e.key)
+
     const allowedChar = /[\d\+\-\*\./=]|Enter|Backspace|Delete/
 
     // allowing only specified buttons
