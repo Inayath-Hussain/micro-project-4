@@ -9,11 +9,12 @@ const btnContainer = document.getElementById('buttons-container')
 
 function keyToValuesMap(key) {
     switch (key) {
+
         case ('='):
         case ('Enter'):
             if (display.value && isNaN(display.value)) {
                 const result = calc(display.value);
-                console.log(result);
+                // console.log(result);
                 display.value = result
             }
             break;
@@ -35,6 +36,7 @@ function keyToValuesMap(key) {
 
         default:
             display.value += key
+            break;
     }
 }
 
@@ -42,13 +44,13 @@ function keyToValuesMap(key) {
 btnContainer.addEventListener('click', (e) => {
     if (e.target.id != 'buttons-container') {
         keyToValuesMap(e.target.innerText)
+        e.target.blur()
     }
 })
 
 
 // keyboard binding
 document.addEventListener('keydown', (e) => {
-    console.log(e.key)
 
     const allowedChar = /[\d\+\-\*\./=]|Enter|Backspace|Delete/
 
